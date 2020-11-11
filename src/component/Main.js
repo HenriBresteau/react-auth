@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import Create from './Create';
 
 const Main = () => {
     return (
@@ -9,6 +10,7 @@ const Main = () => {
                 <h4> Bonjour {firebase.auth().currentUser.displayName} </h4>
                 <div onClick={()=> firebase.auth().signOut()}>Se déconnceter</div>
             </nav>
+            <Create/>
         </main>
     );
 };

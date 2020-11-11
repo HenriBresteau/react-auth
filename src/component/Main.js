@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import Create from './Create';
+import Read from './Read';
 
 const Main = () => {
     return (
@@ -11,6 +12,7 @@ const Main = () => {
                 <div onClick={()=> firebase.auth().signOut()}>Se déconnceter</div>
             </nav>
             <Create/>
+            <Read />
         </main>
     );
 };

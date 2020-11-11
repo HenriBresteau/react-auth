@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import firebase from "../utils/firebaseConfig";
+import { UiIdContext } from "./UiidContext";
 
 const UpdateDelete = ({ item }) => {
   const [update, setUpdate] = useState(false);
   const [authorUpdate, setAuthorUpdate] = useState(null);
   const [textUpdate, setTextUpdate] = useState(null);
 
+  const uId = useContext(UiIdContext);
+
+  const authorCheck = () =>{
+      if (item.uid === uId) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+
+  authorCheck();
+
   const updateItem = () => {
-    let quote = firebase.database().ref("quoteDB").child(item.id);
+    let quote = firebase.database().ref("quotesDB").child(item.id);
     if (authorUpdate !== null) {
       quote.update({
         author: authorUpdate,
@@ -22,7 +35,7 @@ const UpdateDelete = ({ item }) => {
   };
 
   const deleteItem = ()=>{
-    let quote = firebase.database().ref("quoteDB").child(item.id);
+    let quote = firebase.database().ref("quotesDB").child(item.id);
 
     quote.remove();
   }
@@ -32,10 +45,14 @@ const UpdateDelete = ({ item }) => {
         <div className="item-container">
           <p>"{item.text}"</p>
           <h6>{item.author}</h6>
+          
+          {authorCheck() && (
+
           <div className="buttons-container">
             <button onClick={() => setUpdate(!update)}>Update</button>
             <button onClick={deleteItem}>Delete</button>
           </div>
+          )}
         </div>
       )}
 

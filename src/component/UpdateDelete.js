@@ -21,6 +21,11 @@ const UpdateDelete = ({ item }) => {
     setUpdate(false);
   };
 
+  const deleteItem = ()=>{
+    let quote = firebase.database().ref("quoteDB").child(item.id);
+
+    quote.remove();
+  }
   return (
     <li>
       {update === false && (
@@ -29,7 +34,7 @@ const UpdateDelete = ({ item }) => {
           <h6>{item.author}</h6>
           <div className="buttons-container">
             <button onClick={() => setUpdate(!update)}>Update</button>
-            <button>Delete</button>
+            <button onClick={deleteItem}>Delete</button>
           </div>
         </div>
       )}

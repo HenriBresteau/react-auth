@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import firebase from '../utils/firebaseConfig';
+import { UiIdContext } from './UiidContext';
 
 const Create = () => {
     const [author, setAuthor] = useState('');
     const [text, setText] = useState('');
+
+    const uId= useContext(UiIdContext);
 
     const createQuote = () => {
         const quoteDB = firebase.database().ref("quoteDB")
         const quote = {
             author,
             text,
+            uId,
         };
         quoteDB.push(quote);
         setAuthor('');

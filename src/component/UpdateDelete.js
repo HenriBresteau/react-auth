@@ -10,7 +10,8 @@ const UpdateDelete = ({ item }) => {
   const uId = useContext(UiIdContext);
 
   const authorCheck = () =>{
-      if (item.uid === uId) {
+      console.log(uId);
+      if (item.uId === uId) {
           return true;
       } else {
           return false;

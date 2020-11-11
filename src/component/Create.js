@@ -9,7 +9,7 @@ const Create = () => {
     const uId= useContext(UiIdContext);
 
     const createQuote = () => {
-        const quoteDB = firebase.database().ref("quoteDB")
+        const quoteDB = firebase.database().ref("quotesDB")
         const quote = {
             author,
             text,
